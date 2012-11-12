@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+# Usage: quick ssh <name> [<options>]
+# Summary: Allows for quick ssh into a given name
+# Help: Can be used to quickly ssh into hosts
+
+require './lib/quick'
+
+Quick::SSH.new(ARGV)

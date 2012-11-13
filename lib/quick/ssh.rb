@@ -19,10 +19,11 @@ module Quick
           puts "Installing SSH Key"
           puts "When prompted give the remote users password"
           host_user = (@config[@name.to_sym][:username] || ENV['USER'])
-          system("mkdir -p data/#{@name}")
-          system("scp -p #{host_user}@#{@config[@name.to_sym][:hostname]}:~/.ssh/authorized_keys2 data/#{@name}/ssh_keys")
+          system("mkdir -p data/ssh")
+          system("mkdir -p data/ssh/#{@name}")
+          system("scp -p #{host_user}@#{@config[@name.to_sym][:hostname]}:~/.ssh/authorized_keys2 data/ssh/#{@name}/ssh_keys")
           system("cat ~/.ssh/id_rsa.pub >> data/#{@name}/ssh_keys")
-          system("scp -p data/#{@name}/ssh_keys #{host_user}@#{@config[@name.to_sym][:hostname]}:~/.ssh/authorized_keys2")
+          system("scp -p data/#{@name}/ssh/ssh_keys #{host_user}@#{@config[@name.to_sym][:hostname]}:~/.ssh/authorized_keys2")
           puts "Key installed! try `quick ssh #{@name}`"
         end
       elsif @name == "-l"

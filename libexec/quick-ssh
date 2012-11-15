@@ -30,6 +30,6 @@
 #     ANYONE WILL BE ABLE TO ACCESS YOUR SERVERS
 #     SEE: http://www.debian-administration.org/articles/530
 
-require './lib/quick'
+require File.expand_path('../../lib/quick',__FILE__)
 
 Quick::SSH.new(ARGV)

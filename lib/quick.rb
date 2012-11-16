@@ -8,4 +8,5 @@ end
 
 # Internal Requires
 require "#{Quick::BasePath}/lib/quick/config"
+require "#{Quick::BasePath}/lib/quick/log"
 require "#{Quick::BasePath}/lib/quick/ssh"

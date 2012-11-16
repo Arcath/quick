@@ -11,7 +11,7 @@ module Quick
     
     def process_command
       if @config[@name.to_sym]
-        if @arguments == []
+        if @arguments == [] || @arguments.first == "-c"
           ssh_command = "ssh #{@config[@name.to_sym][:hostname]}"
           ssh_command = add_options(ssh_command)
           system(ssh_command)
@@ -49,6 +49,7 @@ module Quick
     def add_options(cmd)
       cmd += " -l #{@config[@name.to_sym][:username]}" if @config[@name.to_sym][:username]
       cmd += " -p #{@config[@name.to_sym][:port]}" if @config[@name.to_sym][:port]
+      cmd += " #{fetch_argument("-c")}" if @arguments.index("-c")
       return cmd
     end
     
